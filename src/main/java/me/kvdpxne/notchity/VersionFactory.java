@@ -51,11 +51,6 @@ public final class VersionFactory {
     }
 
     final String[] parts = version.split("\\.");
-    if (2 > parts.length || 3 < parts.length) {
-      throw new IllegalArgumentException(
-        "Invalid version format: " + version
-      );
-    }
 
     final int major;
     final int minor;
@@ -66,6 +61,10 @@ public final class VersionFactory {
       minor = Integer.parseInt(parts[1]);
 
       if (2 < parts.length) {
+        final int index = parts[2].indexOf('-');
+        if (-1 != index) {
+          parts[2] = parts[2].substring(0, index);
+        }
         patch = Integer.parseInt(parts[2]);
       }
     } catch (final NumberFormatException exception) {
