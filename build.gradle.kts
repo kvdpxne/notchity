@@ -12,9 +12,6 @@ dependencies {
 
 publishing {
   publications {
-    repositories {
-      maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
-    }
 
     register("mavenJava", MavenPublication::class) {
       groupId = "me.kvdpxne"
