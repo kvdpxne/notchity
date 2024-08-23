@@ -32,7 +32,7 @@ public final class VersionFactory {
    * @return A {@link Version} object representing the parsed Bukkit version.
    * @since 0.1.0
    */
-  public static Version getBukkitVersion() {
+  static Version getBukkitVersion() {
     String version = Bukkit.getBukkitVersion();
 
     version = version.substring(0, version.indexOf('-'));
@@ -74,7 +74,7 @@ public final class VersionFactory {
    * version.
    * @since 0.1.0
    */
-  public static Version getReleaseVersion() {
+  static Version getReleaseVersion() {
     final String context = VersionFactory.getRelease();
     if (null == context) {
       return new Version(Release.OLDER.getValue());
