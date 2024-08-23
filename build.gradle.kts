@@ -7,7 +7,7 @@ group = "me.kvdpxne"
 version = "0.1.0"
 
 dependencies {
-  implementation("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
+  compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
 }
 
 val targetJavaVersion = 21
@@ -23,15 +23,13 @@ java {
   }
 }
 
-publishing {
-  publications {
+afterEvaluate {
 
-    register("mavenJava", MavenPublication::class) {
-      groupId = "me.kvdpxne"
-      artifactId = "notchity"
-      version = "0.1.0"
-
-      from(components["java"])
+  publishing {
+    publications {
+      register("mavenJava", MavenPublication::class) {
+        from(components["java"])
+      }
     }
   }
 }
