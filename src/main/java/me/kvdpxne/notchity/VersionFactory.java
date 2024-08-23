@@ -26,6 +26,59 @@ public final class VersionFactory {
   }
 
   /**
+   * Parses a version string in the format "major.minor.patch" and converts it
+   * into an integer representation.
+   * <p>
+   * The integer is calculated as (major * 10 000) + (minor * 100) + (patch). If
+   * the version string is invalid, an {@link IllegalArgumentException} is
+   * thrown.
+   *
+   * @param version The version string to parse. It must not be null or empty
+   *                and must follow the format "major.minor" or
+   *                "major.minor.patch".
+   * @return An integer representing the parsed version.
+   * @throws IllegalArgumentException If the version string is null, empty, or
+   *                                  not in a valid format.
+   * @since 0.1.0
+   */
+  static int parseVersion(
+    final String version
+  ) {
+    if (null == version || version.isEmpty()) {
+      throw new IllegalArgumentException(
+        "The given version must not be null or be empty."
+      );
+    }
+
+    final String[] parts = version.split("\\.");
+    if (2 > parts.length || 3 < parts.length) {
+      throw new IllegalArgumentException(
+        "Invalid version format: " + version
+      );
+    }
+
+    final int major;
+    final int minor;
+    int patch = 0;
+
+    try {
+      major = Integer.parseInt(parts[0]);
+      minor = Integer.parseInt(parts[1]);
+
+      if (2 < parts.length) {
+        patch = Integer.parseInt(parts[2]);
+      }
+    } catch (final NumberFormatException exception) {
+      throw new IllegalArgumentException(
+        "Invalid version format: " + version,
+        exception
+      );
+    }
+
+    return major * 10000 + minor * 100 + patch;
+  }
+
+  /**
    * Parses the Bukkit version string (e.g., 1.19.2-R01) and returns a
    * corresponding {@link Version} object.
    *
@@ -33,16 +86,7 @@ public final class VersionFactory {
    * @since 0.1.0
    */
   static Version getBukkitVersion() {
-    String version = Bukkit.getBukkitVersion();
-
-    version = version.substring(0, version.indexOf('-'));
-    version = version.replace("", ".");
-
-    if (version.charAt(version.length() - 1) == '0') {
-      version = version.substring(0, version.length() - 2);
-    }
-
-    return new Version(Integer.parseInt(version));
+    return new Version(VersionFactory.parseVersion(Bukkit.getBukkitVersion()));
   }
 
   /**
