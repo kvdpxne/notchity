@@ -7,10 +7,10 @@ group = "me.kvdpxne"
 version = "0.1.0"
 
 dependencies {
-  compileOnly("org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT")
+  compileOnly("org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT")
 }
 
-val targetJavaVersion = 21
+val targetJavaVersion = 8
 
 java {
   val javaVersion = JavaVersion.toVersion(targetJavaVersion)
