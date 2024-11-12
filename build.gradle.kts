@@ -4,10 +4,10 @@ plugins {
 }
 
 group = "me.kvdpxne"
-version = "0.1.0"
+version = "0.2.0"
 
 dependencies {
-  compileOnly("org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.3")
 }
 
 val targetJavaVersion = 8
