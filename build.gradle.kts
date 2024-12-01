@@ -18,10 +18,6 @@ subprojects {
     plugin("com.gradleup.shadow")
   }
 
-  dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.3")
-  }
-
   val targetJavaVersion = 8
 
   java {
