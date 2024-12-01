@@ -1,0 +1,9 @@
+[versions]
+shadow = "8.3.5"
+spigot-legacy = "1.7.2-R0.1-SNAPSHOT"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+
+[libraries]
+spigot-legacy = { module = "org.spigotmc:spigot-api", version.ref = "spigot-legacy" }
